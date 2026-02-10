@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Default Theme (System / Blue) */
+    --sys-black: #050505;
+    --sys-dark: #0a0a0a;
+    --sys-surface: #111111;
+    --sys-border: #262626;
+
+    --console-text: #ededed;
+    --console-dim: #a1a1a1;
+    --console-muted: #525252;
+    --console-accent: #3b82f6;
+    /* Blue */
+    --console-success: #10b981;
+    --console-warn: #f59e0b;
+    --console-error: #ef4444;
+  }
+
+  .theme-matrix {
+    --sys-black: #000000;
+    --sys-dark: #020a02;
+    --sys-surface: #051405;
+    --sys-border: #003300;
+
+    --console-text: #00ff00;
+    --console-dim: #008f00;
+    --console-muted: #004400;
+    --console-accent: #00dd00;
+    --console-success: #00ff00;
+    --console-warn: #ffff00;
+    --console-error: #ff0000;
+  }
+
+  .theme-cyberpunk {
+    --sys-black: #050510;
+    --sys-dark: #0a0a20;
+    --sys-surface: #101030;
+    --sys-border: #333366;
+
+    --console-text: #e0e0ff;
+    --console-dim: #9090b0;
+    --console-muted: #505070;
+    --console-accent: #ff00ff;
+    /* Magenta */
+    --console-success: #00ffff;
+    /* Cyan */
+    --console-warn: #ffff00;
+    --console-error: #ff0055;
+  }
+
+  .theme-retro {
+    --sys-black: #1a1a1a;
+    --sys-dark: #222222;
+    --sys-surface: #2a2a2a;
+    --sys-border: #444444;
+
+    --console-text: #ffb000;
+    /* Amber */
+    --console-dim: #cc8800;
+    --console-muted: #664400;
+    --console-accent: #ffcc00;
+    --console-success: #ffb000;
+    --console-warn: #ff5500;
+    --console-error: #ff3333;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--sys-black);
+    color: var(--console-text);
+  }
+
+  body {
+    @apply font-sans antialiased overflow-x-hidden;
+    line-height: 1.6;
+    background-color: var(--sys-black);
+    background-image: linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--console-text);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+    line-height: 1.2;
+    color: var(--console-text);
+  }
+
+  p {
+    @apply max-w-[65ch] leading-relaxed;
+    color: var(--console-dim);
+  }
+
+  /* Log / Terminal Text */
+  .code {
+    @apply font-mono text-sm;
+  }
+}
+
+@layer utilities {
+
+  /* Scrollbar theming */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--sys-dark);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--sys-border);
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--console-muted);
+  }
+}
+
+@layer components {
+  .container-terminal {
+    @apply max-w-full mx-auto px-4 md:px-8 lg:px-12;
+  }
+
+  .section-padding {
+    @apply py-8 md:py-12;
+  }
+
+  /* Shared "Panel" style for sections */
+  .sys-panel {
+    @apply bg-sys-dark border border-sys-border rounded-lg p-6 md:p-8;
+  }
+
+  /* Terminal Header for Sections */
+  .terminal-header {
+    @apply flex items-center gap-2 font-mono text-sm text-console-muted mb-8 border-b border-sys-border pb-2 w-full uppercase tracking-wider;
+  }
+
+  .terminal-prompt {
+    @apply text-console-accent font-bold;
+  }
+}
