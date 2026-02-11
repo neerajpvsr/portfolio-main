@@ -171,7 +171,7 @@ export const EducationFetch = () => {
                                 <img
                                     src={cert.image}
                                     alt={cert.name}
-                                    className="h-20 w-auto object-contain transition-transform duration-300"
+                                    className="h-20 w-auto object-contain transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.8)]"
                                 />
                             </a>
                         ))}

@@ -56,7 +56,6 @@ export const Navbar = () => {
 
     const navLinks = [
         { name: '~/about', id: 'about' },
-        { name: '~/education', id: 'education' },
         { name: '~/skills', id: 'skills' },
         { name: '~/projects', id: 'projects' },
         { name: '~/log', id: 'log' },

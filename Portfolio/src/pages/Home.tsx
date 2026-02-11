@@ -12,7 +12,7 @@ export const Home = () => {
             <About />
 
             {/* Career Section: Side-by-Side Grid */}
-            <section id="career" className="py-12 relative overflow-hidden">
+            <section id="career" className="pt-8 pb-12 relative overflow-hidden">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 items-start">
                         <ExperienceTimeline />
