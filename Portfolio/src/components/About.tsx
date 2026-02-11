@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 
 // Counter Component for Metrics
 const Counter = ({ value, label }: { value: number, label: string }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
     const inView = useInView(ref, { once: true, margin: "-50px" });
     const motionValue = useMotionValue(0);
     const springValue = useSpring(motionValue, { damping: 50, stiffness: 100 });

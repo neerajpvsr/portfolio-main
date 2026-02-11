@@ -27,7 +27,7 @@ const BinaryStream = () => {
 };
 
 const SkillProcess = ({ category, items }: { category: string, items: any[] }) => {
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
     const inView = useInView(ref, { once: true, amount: 0.2 });
     const [status, setStatus] = useState("WAITING");
 
