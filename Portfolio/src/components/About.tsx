@@ -50,11 +50,10 @@ export const About = () => {
 
     // 4. Personality Modules Data
     const modules = [
-        "neuroscience.systems",
-        "cosmology.scale",
-        "geopolitics.dynamics",
-        "calisthenics.discipline",
-        "mandarin.culture"
+        "neuroscience",
+        "cosmology",
+        "geopolitics",
+        "calisthenics"
     ];
 
     return (
@@ -88,83 +87,75 @@ export const About = () => {
                     </motion.div>
                 </div>
 
-                {/* 2. METRICS & PERSONALITY (Moved Up) */}
-                <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-                    {/* IMPACT.METRICS */}
-                    <div className="bg-[#0a0a0a] border border-sys-border/50 p-6 rounded-sm font-mono h-full relative group hover:border-console-accent/30 transition-colors">
-                        <div className="flex items-center justify-between border-b border-sys-border/30 pb-3 mb-4">
-                            <div className="text-console-accent text-xs">
-                                {">"} ./load_impact_metrics
-                            </div>
-                            <div className="flex gap-1.5">
-                                <div className="w-2 h-2 rounded-full bg-sys-border/50"></div>
-                                <div className="w-2 h-2 rounded-full bg-sys-border/50"></div>
-                            </div>
+                {/* 2. METRICS & PERSONALITY (Centered Grid) */}
+                <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto items-start">
+                    {/* PERSONALITY.MODULES (Swapped to Left) */}
+                    <div className="md:pl-12">
+                        <div className="font-mono text-console-dim text-xs mb-4">
+                            {">"} ./load_personality_modules
+                            <br />
+                            <span className="text-console-muted">initializing...</span>
                         </div>
 
-                        <div className="space-y-4">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
+                            variants={{
+                                visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
+                            }}
+                            className="space-y-3 font-mono text-sm pl-4"
+                        >
+                            {modules.map((mod, i) => (
+                                <motion.div
+                                    key={i}
+                                    variants={{
+                                        hidden: { opacity: 0, x: -10 },
+                                        visible: { opacity: 1, x: 0 }
+                                    }}
+                                    className="flex items-center gap-3 text-console-text/80 group/item"
+                                >
+                                    <span className="text-console-success">✓</span>
+                                    <span className="group-hover/item:text-console-light transition-colors hover:text-console-accent cursor-default">
+                                        {mod}
+                                    </span>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 1.5 }}
+                            className="mt-6 font-mono text-xs text-console-dim pl-4"
+                        >
+                            status: <span className="text-console-success">modules_loaded</span>
+                        </motion.div>
+                    </div>
+
+                    {/* IMPACT.METRICS (Swapped to Right) */}
+                    <div>
+                        <div className="font-mono text-console-dim text-xs mb-4">
+                            {">"} ./load_impact_metrics
+                            <br />
+                            <span className="text-console-muted">analyzing...</span>
+                        </div>
+                        <div className="pl-4 space-y-3 font-mono text-sm">
                             <Counter label="years_experience" value={2} />
                             <Counter label="systems_delivered" value={5} />
                             <Counter label="learners_mentored" value={150} />
                             <Counter label="cloud_certifications" value={4} />
                         </div>
-
-                        {/* Scanline effect */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-console-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
-                    </div>
-
-                    {/* PERSONALITY.MODULES */}
-                    <div className="bg-[#0a0a0a] border border-sys-border/50 p-6 rounded-sm font-mono h-full relative group hover:border-console-accent/30 transition-colors">
-                        <div className="flex items-center justify-between border-b border-sys-border/30 pb-3 mb-4">
-                            <div className="text-console-dim text-xs">
-                                {">"} ./load_personality_modules
-                            </div>
-                            <div className="flex gap-1.5">
-                                <div className="w-2 h-2 rounded-full bg-sys-border/50"></div>
-                                <div className="w-2 h-2 rounded-full bg-sys-border/50"></div>
-                            </div>
-                        </div>
-
-                        <div className="relative min-h-[140px]"> {/* Min height to match metrics approx */}
-                            <motion.div
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-50px" }}
-                                variants={{
-                                    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
-                                }}
-                                className="space-y-2 text-sm"
-                            >
-                                {modules.map((mod, i) => (
-                                    <motion.div
-                                        key={i}
-                                        variants={{
-                                            hidden: { opacity: 0, x: -10 },
-                                            visible: { opacity: 1, x: 0 }
-                                        }}
-                                        className="flex items-center gap-3 text-console-text/80 group/item"
-                                    >
-                                        <span className="text-console-success text-xs">✓</span>
-                                        <span className="group-hover/item:text-console-light transition-colors">
-                                            {mod}
-                                        </span>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 1.5 }}
-                                className="absolute bottom-0 right-0 font-mono text-[10px] text-console-dim"
-                            >
-                                status: <span className="text-console-success">loaded</span>
-                            </motion.div>
-                        </div>
-
-                        {/* Scanline effect */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-console-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                            className="mt-6 font-mono text-xs text-console-dim pl-4"
+                        >
+                            status: <span className="text-console-success">metrics_loaded</span>
+                        </motion.div>
                     </div>
                 </div>
 
