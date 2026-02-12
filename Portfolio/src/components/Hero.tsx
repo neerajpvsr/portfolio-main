@@ -59,7 +59,7 @@ export const Hero = () => {
                             </div>
 
                             {/* Rotating Descriptors (Absolute Ticker) */}
-                            <div className="h-12 overflow-hidden relative font-mono text-xl md:text-2xl text-console-dim border-l-2 border-sys-border pl-6 max-w-2xl">
+                            <div className="h-12 overflow-hidden relative font-mono text-lg md:text-xl text-console-dim border-l-2 border-sys-border pl-6 max-w-full">
                                 <AnimatePresence initial={false}>
                                     <motion.div
                                         key={descriptorIndex}

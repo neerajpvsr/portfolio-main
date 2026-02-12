@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { LogPage } from './pages/LogPage';
@@ -11,31 +12,30 @@ import { CommandBar } from './components/CommandBar';
 import { BootSequence } from './components/BootSequence';
 
 function AppContent() {
-  const [booting, setBooting] = useState(() => {
-    return !sessionStorage.getItem('booted');
-  });
+  const [isBooting, setIsBooting] = useState(true);
 
   const handleBootComplete = () => {
-    setBooting(false);
-    sessionStorage.setItem('booted', 'true');
+    setIsBooting(false);
   };
 
-  if (booting) {
-    return <BootSequence onComplete={handleBootComplete} />;
-  }
-
   return (
-    <div className="min-h-screen transition-colors duration-300">
-      <CommandBar />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/log" element={<LogPage />} />
-        <Route path="/log/:id" element={<BlogPostPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:id" element={<ProjectDetailPage />} />
-      </Routes>
-    </div>
+    <>
+      <div className="min-h-screen transition-colors duration-300">
+        <CommandBar />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/log" element={<LogPage />} />
+          <Route path="/log/:id" element={<BlogPostPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:id" element={<ProjectDetailPage />} />
+        </Routes>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {isBooting && <BootSequence onComplete={handleBootComplete} />}
+      </AnimatePresence>
+    </>
   );
 }
 

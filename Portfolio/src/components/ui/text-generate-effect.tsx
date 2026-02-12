@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { motion, stagger, useAnimate, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 export const TextGenerateEffect = ({
@@ -13,52 +12,53 @@ export const TextGenerateEffect = ({
     filter?: boolean;
     duration?: number;
 }) => {
-    const [scope, animate] = useAnimate();
-    const isInView = useInView(scope, { once: true, margin: "-100px" });
     let wordsArray = words.split(" ");
 
-    useEffect(() => {
-        if (isInView) {
-            animate(
-                "span",
-                {
-                    opacity: 1,
-                    filter: filter ? "blur(0px)" : "none",
-                },
-                {
-                    duration: duration ? duration : 1,
-                    delay: stagger(0.05), // faster stagger as requested 0.04-0.06
-                }
-            );
-        }
-    }, [isInView, animate, filter, duration]);
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.02,
+            },
+        },
+    };
 
-    const renderWords = () => {
-        return (
-            <motion.div ref={scope}>
-                {wordsArray.map((word, idx) => {
-                    return (
-                        <motion.span
-                            key={word + idx}
-                            className="dark:text-white text-black opacity-0"
-                            style={{
-                                filter: filter ? "blur(10px)" : "none",
-                            }}
-                        >
-                            {word}{" "}
-                        </motion.span>
-                    );
-                })}
-            </motion.div>
-        );
+    const item = {
+        hidden: {
+            opacity: 0,
+            filter: filter ? "blur(10px)" : "none",
+        },
+        show: {
+            opacity: 1,
+            filter: "blur(0px)",
+            transition: {
+                duration: duration ? duration : 1,
+            },
+        },
     };
 
     return (
         <div className={cn("font-bold", className)}>
             <div className="mt-4">
-                <div className=" dark:text-white text-black leading-snug tracking-wide">
-                    {renderWords()}
-                </div>
+                <motion.div
+                    className="leading-snug tracking-wide"
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                >
+                    {wordsArray.map((word, idx) => {
+                        return (
+                            <motion.span
+                                key={word + idx}
+                                variants={item}
+                            >
+                                {word}{" "}
+                            </motion.span>
+                        );
+                    })}
+                </motion.div>
             </div>
         </div>
     );
