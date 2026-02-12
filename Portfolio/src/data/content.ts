@@ -81,39 +81,42 @@ export const content = {
             category: "Languages",
             items: [
                 { name: "Python", icon: "https://cdn.simpleicons.org/python" },
-                { name: "C++", icon: "https://cdn.simpleicons.org/cplusplus" },
-                { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript" },
+                { name: "R", icon: "https://cdn.simpleicons.org/r" },
                 { name: "SQL", icon: "https://cdn.simpleicons.org/postgresql" }
             ]
         },
         {
-            category: "Machine Learning",
+            category: "Data Science & ML",
             items: [
-                { name: "PyTorch", icon: "https://cdn.simpleicons.org/pytorch" },
-                { name: "TensorFlow", icon: "https://cdn.simpleicons.org/tensorflow" },
-                { name: "Scikit-learn", icon: "https://cdn.simpleicons.org/scikitlearn" },
-                { name: "HuggingFace", icon: "https://cdn.simpleicons.org/huggingface" },
-                { name: "OpenCV", icon: "https://cdn.simpleicons.org/opencv" }
+                { name: "Pandas", icon: "https://cdn.simpleicons.org/pandas" },
+                { name: "NumPy", icon: "https://cdn.simpleicons.org/numpy" },
+                { name: "Scikit-Learn", icon: "https://cdn.simpleicons.org/scikitlearn" },
+                { name: "NLP", icon: "https://cdn.simpleicons.org/spaCy" },
+                { name: "TimeSeries Forecasting", icon: "https://cdn.simpleicons.org/scipy" },
+                { name: "ETL", icon: "https://cdn.simpleicons.org/apacheairflow" },
+                { name: "MLOps", icon: "https://cdn.simpleicons.org/mlflow" }
             ]
         },
         {
-            category: "Engineering & GenAI",
+            category: "GenAI",
             items: [
-                { name: "Docker", icon: "https://cdn.simpleicons.org/docker" },
-                { name: "Kubernetes", icon: "https://cdn.simpleicons.org/kubernetes" },
-                { name: "GCP", icon: "https://cdn.simpleicons.org/googlecloud" },
-                { name: "RAG / LangChain", icon: "https://cdn.simpleicons.org/langchain" },
-                { name: "Fine-tuning", icon: "https://cdn.simpleicons.org/nvidia" }
-            ]
-        },
-        {
-            category: "Web & Tools",
-            items: [
-                { name: "React", icon: "https://cdn.simpleicons.org/react" },
+                { name: "Prompt Engg", icon: "https://cdn.simpleicons.org/openai" },
+                { name: "ReAct", icon: "https://cdn.simpleicons.org/langchain" },
+                { name: "MCP", icon: "https://cdn.simpleicons.org/anthropic" },
+                { name: "RAG Pipeline", icon: "https://cdn.simpleicons.org/haystack" },
+                { name: "VectorDB", icon: "https://cdn.simpleicons.org/pinecone" },
+                { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain" },
+                { name: "LangGraph", icon: "https://cdn.simpleicons.org/langchain" },
+                { name: "LLaMA", icon: "https://cdn.simpleicons.org/meta" },
                 { name: "FastAPI", icon: "https://cdn.simpleicons.org/fastapi" },
-                { name: "Git", icon: "https://cdn.simpleicons.org/git" },
-                { name: "CI/CD", icon: "https://cdn.simpleicons.org/githubactions" },
-                { name: "Linux", icon: "https://cdn.simpleicons.org/linux" }
+                { name: "HuggingFace", icon: "https://cdn.simpleicons.org/huggingface" }
+            ]
+        },
+        {
+            category: "Cloud & DevOps",
+            items: [
+                { name: "Google Cloud (GCP)", icon: "https://cdn.simpleicons.org/googlecloud" },
+                { name: "Git", icon: "https://cdn.simpleicons.org/git" }
             ]
         }
     ],

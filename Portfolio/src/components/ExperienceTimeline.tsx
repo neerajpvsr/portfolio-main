@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { content } from '../data/content';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Command, Code2, GitCommit, Calendar, MapPin } from 'lucide-react';
+import { Command, Code2, GitCommit, Calendar, MapPin } from 'lucide-react';
 
 export const ExperienceTimeline = () => {
     // Track hover state for each card independently if needed, 
@@ -17,10 +17,7 @@ export const ExperienceTimeline = () => {
 
             {/* Header */}
             <div className="mb-12 text-center md:text-left relative z-10 flex flex-col md:flex-row items-center md:items-center gap-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sys-dark border border-sys-border/50 text-console-dim text-xs font-mono">
-                    <Terminal size={12} />
-                    <span>user@portfolio:~/career</span>
-                </div>
+
                 <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
                     Experience<span className="text-console-accent">.log</span>
                 </h2>

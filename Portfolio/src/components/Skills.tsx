@@ -2,7 +2,6 @@ import { content } from '../data/content';
 import { Section } from './Section';
 import { motion, useInView } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
-import { Terminal } from 'lucide-react';
 
 const BinaryStream = () => {
     // Generate a long string of block characters for the animation
@@ -105,10 +104,7 @@ export const Skills = () => {
     return (
         <Section id="skills">
             <div className="mb-12 relative z-10 px-4 md:px-8 flex flex-col md:flex-row items-start md:items-center gap-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sys-dark border border-sys-border/50 text-console-dim text-xs font-mono">
-                    <Terminal size={12} />
-                    <span>user@portfolio:~/skills</span>
-                </div>
+
                 <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
                     Skills<span className="text-orange-400">.yaml</span>
                 </h2>

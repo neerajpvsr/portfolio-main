@@ -1,7 +1,6 @@
 import { Section } from './Section';
 
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Terminal } from 'lucide-react';
 import { TextGenerateEffect } from './ui/text-generate-effect';
 import { useEffect, useRef, useState } from 'react';
 
@@ -59,10 +58,7 @@ export const About = () => {
     return (
         <Section id="about" className="!pb-0">
             <div className="mb-8 text-center md:text-left relative z-10 flex flex-col md:flex-row items-center md:text-left gap-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sys-dark border border-sys-border/50 text-console-dim text-xs font-mono">
-                    <Terminal size={12} />
-                    <span>user@portfolio:~/about</span>
-                </div>
+
                 <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
                     About<span className="text-console-accent">.sys</span>
                 </h2>
