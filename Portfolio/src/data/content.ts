@@ -301,6 +301,6 @@ The website you are currently viewing. Designed to mimic a **Terminal / System C
     contact: {
         email: "neerajpachipulusuvsr@gmail.com", // Placeholder
         linkedin: "https://linkedin.com/in/neerajpvsr", // Placeholder
-        github: "https://github.com/Neeraj-Pachipulusu-V-S-R" // Placeholder
+        github: "https://github.com/neerajpvsr" // Placeholder
     }
 };
