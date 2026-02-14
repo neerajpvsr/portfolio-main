@@ -13,7 +13,7 @@ const RollingDigit = ({ digit, delay = 0 }: { digit: number, delay?: number }) =
                 whileInView={{ y: -1 * digit * 10 + "%" }}
                 viewport={{ once: true }}
                 transition={{
-                    duration: 3,
+                    duration: 1.5,
                     ease: [0.34, 1.56, 0.64, 1], // Elastic/Cartoonish ease
                     delay: delay
                 }}
@@ -46,7 +46,7 @@ export const About = () => {
     const domains = [
         "agentic_ai", "document_intelligence", "bfsi_ai",
         "rag_pipelines", "ai_governance", "aiops",
-        "computer_vision", "generative_models", "system_design"
+        "generative_models"
     ];
 
     // 4. Personality Modules Data
@@ -92,9 +92,9 @@ export const About = () => {
                 </div>
 
                 {/* 2. PERSONALITY (Centered) */}
-                <div className="max-w-2xl mx-auto text-center">
-                    <div className="font-mono text-console-dim text-xs mb-6">
-                        {">"} ./load_personality_modules <span className="text-console-success">--verbose</span>
+                <div className="max-w-4xl mx-auto text-center flex flex-col md:flex-row items-center justify-center gap-6">
+                    <div className="font-mono text-console-dim text-xs whitespace-nowrap shrink-0">
+                        {">"}  <span className="text-console-success">./load_personality_modules</span>
                     </div>
 
                     <motion.div
@@ -104,7 +104,7 @@ export const About = () => {
                         variants={{
                             visible: { transition: { staggerChildren: 0.1 } }
                         }}
-                        className="flex flex-wrap justify-center gap-4 md:gap-8"
+                        className="flex flex-wrap justify-center md:justify-start gap-4"
                     >
                         {modules.map((mod, i) => (
                             <motion.div
