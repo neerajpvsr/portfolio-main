@@ -1,5 +1,5 @@
-import { useState, useRef, FormEvent } from 'react';
-import { Mail, Linkedin, Github, Loader2, CheckCircle2 } from 'lucide-react';
+import { useState, useRef, type FormEvent } from 'react';
+import { Mail, Linkedin, Github, CheckCircle2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { Section } from './Section';
 import { content } from '../data/content';
