@@ -79,9 +79,9 @@ export const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${isScrolled || isMobileMenuOpen
-                ? 'bg-sys-black/95 backdrop-blur-sm border-sys-border py-3'
-                : 'bg-transparent border-transparent py-5'
+            className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 ${isScrolled || isMobileMenuOpen
+                ? 'bg-sys-black/80 backdrop-blur-sm py-3'
+                : 'bg-transparent py-5'
                 }`}
         >
             <div className="container-terminal flex items-center justify-between font-mono text-sm">
@@ -131,22 +131,37 @@ export const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Mobile Menu Overlay */}
-                <div className={`fixed inset-0 bg-sys-black/95 backdrop-blur-md flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                    <ul className="flex flex-col gap-8 text-center">
-                        {navLinks.map((link) => (
-                            <li key={link.name}>
-                                <button
-                                    onClick={() => handleNavigation(link.id)}
-                                    className="text-console-text text-xl hover:text-console-accent transition-colors tracking-tight hover:underline decoration-console-accent/50 underline-offset-8"
-                                >
-                                    {link.name}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="text-console-muted text-xs mt-8">
-                        UPTIME: {time.toLocaleTimeString([], { hour12: false })}
+                {/* Mobile Menu - Floating Glass Sidebar */}
+                <div
+                    className={`fixed top-16 right-4 w-64 rounded-2xl z-[9999] flex flex-col shadow-2xl transition-all duration-300 ease-out md:hidden border border-white/10 ${isMobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8 pointer-events-none'}`}
+                    style={{
+                        backgroundColor: 'rgba(5, 5, 5, 0.85)',
+                        backdropFilter: 'blur(16px)',
+                        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.5)'
+                    }}
+                >
+                    {/* Removed duplicate close button as requested */}
+
+                    <div className="flex-1 flex flex-col justify-center gap-2 p-6">
+                        <ul className="flex flex-col gap-4 w-full">
+                            {navLinks.map((link) => (
+                                <li key={link.name}>
+                                    <button
+                                        onClick={() => handleNavigation(link.id)}
+                                        className="text-console-text text-lg font-medium hover:text-console-accent transition-colors tracking-tight w-full text-right py-2 border-b border-white/5 last:border-0 hover:translate-x-[-4px]"
+                                    >
+                                        {link.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="p-4 border-t border-white/10 text-right bg-black/20 rounded-b-2xl">
+                        <div className="text-console-muted text-[10px] font-mono mb-1 tracking-wider">SYSTEM STATUS</div>
+                        <div className="text-console-success text-xs font-mono">
+                            UPTIME: {time.toLocaleTimeString([], { hour12: false })}
+                        </div>
                     </div>
                 </div>
             </div>
