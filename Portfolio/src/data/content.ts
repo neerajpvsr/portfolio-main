@@ -26,7 +26,7 @@ import gitIcon from '../assets/skills/Git.png';
 
 export const content = {
     hero: {
-        name: "Neeraj",
+        name: "Neeraj Pachipulusu",
         role: "AI/ML Engineer",
         tagline: "Building robust, scalable AI systems for real-world impact.",
         resumeLink: "/Neeraj_AIML_CTS.pdf",

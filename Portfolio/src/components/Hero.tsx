@@ -117,6 +117,7 @@ export const Hero = () => {
                                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                             />
                             <img
+                                id="hero-profile-img"
                                 src={profileImage}
                                 alt={name}
                                 className="w-full h-full object-cover rounded-full border-4 border-sys-dark relative z-10"
