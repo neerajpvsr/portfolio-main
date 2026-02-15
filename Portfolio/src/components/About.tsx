@@ -1,7 +1,48 @@
+
 import { Section } from './Section';
 
 import { motion } from 'framer-motion';
 import { TextGenerateEffect } from './ui/text-generate-effect';
+
+
+
+
+// Stream Text Component
+const StreamText = ({ text, index }: { text: string, index: number }) => {
+    return (
+        <motion.div
+            variants={{
+                hidden: { opacity: 0, x: -10 },
+                visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: {
+                        duration: 0.3,
+                        when: "beforeChildren", // Load container/marker first
+                        staggerChildren: 0.05, // Then type text
+                        delayChildren: 0.3 // Brief pause after marker appears
+                    }
+                }
+            }}
+            className="group flex items-center gap-2"
+        >
+            <span className="text-console-dim text-xs select-none">[{index + 1}]</span>
+            <span className="font-mono text-sm text-console-text group-hover:text-console-accent group-hover:underline decoration-console-accent/50 underline-offset-4 transition-all cursor-pointer flex">
+                {text.split("").map((char, i) => (
+                    <motion.span
+                        key={i}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: { opacity: 1 }
+                        }}
+                    >
+                        {char}
+                    </motion.span>
+                ))}
+            </span>
+        </motion.div>
+    );
+};
 
 
 // Rolling Digit Component
@@ -91,10 +132,20 @@ export const About = () => {
                     </motion.div>
                 </div>
 
-                {/* 2. PERSONALITY (Centered) */}
-                <div className="max-w-4xl mx-auto text-center flex flex-col md:flex-row items-center justify-center gap-6">
-                    <div className="font-mono text-console-dim text-xs whitespace-nowrap shrink-0">
-                        {">"}  <span className="text-console-success">./load_personality_modules</span>
+                {/* 2. PERSONALITY (Horizontal Slide) */}
+                <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 min-h-[100px]">
+                    <div className="font-mono text-console-dim text-xs whitespace-nowrap shrink-0 flex items-center">
+                        <span className="mr-2">{">"}</span>
+                        <motion.span
+                            initial={{ width: "0%" }}
+                            whileInView={{ width: "100%" }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: "linear" }}
+                            className="text-console-success overflow-hidden whitespace-nowrap inline-block align-bottom"
+                            style={{ maxWidth: "fit-content" }}
+                        >
+                            ./mount_interest_drivers
+                        </motion.span>
                     </div>
 
                     <motion.div
@@ -102,21 +153,17 @@ export const About = () => {
                         whileInView="visible"
                         viewport={{ once: true, margin: "-50px" }}
                         variants={{
-                            visible: { transition: { staggerChildren: 0.1 } }
+                            visible: {
+                                transition: {
+                                    staggerChildren: 0.5,
+                                    delayChildren: 2.0
+                                }
+                            }
                         }}
-                        className="flex flex-wrap justify-center md:justify-start gap-4"
+                        className="flex flex-wrap md:flex-nowrap justify-center md:justify-start gap-4"
                     >
                         {modules.map((mod, i) => (
-                            <motion.div
-                                key={i}
-                                variants={{
-                                    hidden: { opacity: 0, scale: 0.9 },
-                                    visible: { opacity: 1, scale: 1 }
-                                }}
-                                className="px-4 py-2 bg-sys-surface/40 border border-sys-border/50 rounded-full font-mono text-sm text-console-text/80 hover:border-console-accent/50 hover:text-console-accent transition-all cursor-crosshair"
-                            >
-                                {mod}
-                            </motion.div>
+                            <StreamText key={i} text={mod} index={i} />
                         ))}
                     </motion.div>
                 </div>
@@ -136,7 +183,7 @@ export const About = () => {
                                     <motion.span
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: 2.5, type: "spring" }}
+                                        transition={{ delay: 1.5, type: "spring" }}
                                         className="text-3xl md:text-4xl text-console-accent font-bold pb-1"
                                     >
                                         +

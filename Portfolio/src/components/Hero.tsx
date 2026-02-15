@@ -32,7 +32,7 @@ export const Hero = () => {
     const lineOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.8, 0.2]);
 
     return (
-        <section ref={containerRef} className="min-h-[85vh] flex items-center pt-28 pb-12 relative overflow-hidden">
+        <section id="home" ref={containerRef} className="min-h-[85vh] flex items-center pt-28 pb-12 relative overflow-hidden">
 
             {/* Background Grid Decoration */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20"></div>

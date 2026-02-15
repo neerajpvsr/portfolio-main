@@ -4,6 +4,25 @@ import azureAiLogo from '../assets/Azure AI Engineer Associate.png';
 import azureDsLogo from '../assets/Azure Data Science Associate.png';
 import gcpMlLogo from '../assets/GCP ML Engineer Professional.png';
 import databricksLogo from '../assets/Databricks ML Engineer.png';
+import pythonIcon from '../assets/skills/Python.png';
+import etlIcon from '../assets/skills/ETL.png';
+import rIcon from '../assets/skills/R.png';
+import sqlIcon from '../assets/skills/SQL.png';
+import pandasIcon from '../assets/skills/Pandas.png';
+import numpyIcon from '../assets/skills/NumPy.png';
+import sklearnIcon from '../assets/skills/scikit-learn.png';
+import forecastIcon from '../assets/skills/forecast.png';
+import devopsIcon from '../assets/skills/devops.png';
+import promptIcon from '../assets/skills/prompt-engg.png';
+import mcpIcon from '../assets/skills/mcp.png';
+import ragIcon from '../assets/skills/RAG.png';
+import langchainIcon from '../assets/skills/langchain.png';
+import langgraphIcon from '../assets/skills/langgraph.png';
+import llamaIcon from '../assets/skills/llama.png';
+import fastapiIcon from '../assets/skills/fast api.png';
+import huggingfaceIcon from '../assets/skills/hugging face.png';
+import gcpIcon from '../assets/skills/Google Cloud.png';
+import gitIcon from '../assets/skills/Git.png';
 
 export const content = {
     hero: {
@@ -80,43 +99,40 @@ export const content = {
         {
             category: "Languages",
             items: [
-                { name: "Python", icon: "https://cdn.simpleicons.org/python" },
-                { name: "R", icon: "https://cdn.simpleicons.org/r" },
-                { name: "SQL", icon: "https://cdn.simpleicons.org/postgresql" }
+                { name: "Python", icon: pythonIcon },
+                { name: "R", icon: rIcon },
+                { name: "SQL", icon: sqlIcon }
             ]
         },
         {
             category: "Data Science & ML",
             items: [
-                { name: "Pandas", icon: "https://cdn.simpleicons.org/pandas" },
-                { name: "NumPy", icon: "https://cdn.simpleicons.org/numpy" },
-                { name: "Scikit-Learn", icon: "https://cdn.simpleicons.org/scikitlearn" },
-                { name: "NLP", icon: "https://cdn.simpleicons.org/spaCy" },
-                { name: "TimeSeries Forecasting", icon: "https://cdn.simpleicons.org/scipy" },
-                { name: "ETL", icon: "https://cdn.simpleicons.org/apacheairflow" },
-                { name: "MLOps", icon: "https://cdn.simpleicons.org/mlflow" }
+                { name: "Pandas", icon: pandasIcon },
+                { name: "NumPy", icon: numpyIcon },
+                { name: "Scikit-Learn", icon: sklearnIcon },
+                { name: "TimeSeries Forecasting", icon: forecastIcon },
+                { name: "ETL", icon: etlIcon },
+                { name: "MLOps", icon: devopsIcon }
             ]
         },
         {
             category: "GenAI",
             items: [
-                { name: "Prompt Engg", icon: "https://cdn.simpleicons.org/openai" },
-                { name: "ReAct", icon: "https://cdn.simpleicons.org/langchain" },
-                { name: "MCP", icon: "https://cdn.simpleicons.org/anthropic" },
-                { name: "RAG Pipeline", icon: "https://cdn.simpleicons.org/haystack" },
-                { name: "VectorDB", icon: "https://cdn.simpleicons.org/pinecone" },
-                { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain" },
-                { name: "LangGraph", icon: "https://cdn.simpleicons.org/langchain" },
-                { name: "LLaMA", icon: "https://cdn.simpleicons.org/meta" },
-                { name: "FastAPI", icon: "https://cdn.simpleicons.org/fastapi" },
-                { name: "HuggingFace", icon: "https://cdn.simpleicons.org/huggingface" }
+                { name: "Prompt Engg", icon: promptIcon },
+                { name: "MCP", icon: mcpIcon },
+                { name: "RAG Pipeline", icon: ragIcon },
+                { name: "LangChain", icon: langchainIcon },
+                { name: "LangGraph", icon: langgraphIcon },
+                { name: "LLaMA", icon: llamaIcon },
+                { name: "FastAPI", icon: fastapiIcon },
+                { name: "HuggingFace", icon: huggingfaceIcon }
             ]
         },
         {
             category: "Cloud & DevOps",
             items: [
-                { name: "Google Cloud (GCP)", icon: "https://cdn.simpleicons.org/googlecloud" },
-                { name: "Git", icon: "https://cdn.simpleicons.org/git" }
+                { name: "Google Cloud (GCP)", icon: gcpIcon },
+                { name: "Git", icon: gitIcon }
             ]
         }
     ],

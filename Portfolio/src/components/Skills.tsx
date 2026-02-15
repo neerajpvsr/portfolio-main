@@ -6,10 +6,15 @@ import { useState, useEffect } from 'react';
 
 
 const TerminalTyper = ({ items, delay = 0 }: { items: any[], delay?: number }) => {
-    const [displayedText, setDisplayedText] = useState("");
+    const [charIndex, setCharIndex] = useState(0);
     const [startTyping, setStartTyping] = useState(false);
 
-    const fullText = items.map(s => s.name).join(" | ");
+    // Calculate the full text layout to determine total length
+    // We'll use this to control the typing animation progress
+    const separator = " | ";
+    const fullTextLength = items.reduce((acc, item, index) => {
+        return acc + item.name.length + (index < items.length - 1 ? separator.length : 0);
+    }, 0);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -21,25 +26,64 @@ const TerminalTyper = ({ items, delay = 0 }: { items: any[], delay?: number }) =
     useEffect(() => {
         if (!startTyping) return;
 
-        let currentIndex = 0;
         const typingInterval = setInterval(() => {
-            if (currentIndex <= fullText.length) {
-                setDisplayedText(fullText.slice(0, currentIndex));
-                currentIndex++;
-            } else {
+            setCharIndex((prev) => {
+                if (prev < fullTextLength) {
+                    return prev + 1;
+                }
                 clearInterval(typingInterval);
-            }
-        }, 40); // Slower typing speed
+                return prev;
+            });
+        }, 40); // Typing speed
 
         return () => clearInterval(typingInterval);
-    }, [startTyping, fullText]);
+    }, [startTyping, fullTextLength]);
+
+    // Render logic
+    let runningCharCount = 0;
 
     return (
-        <div className="font-mono text-sm md:text-base text-console-text min-h-[1.5em] break-all">
+        <div className="font-mono text-sm md:text-base text-console-text min-h-[1.5em] break-all leading-relaxed">
             <span className="text-console-dim mr-2 select-none">{`>>`}</span>
-            <span className="text-console-text leading-relaxed">
-                {displayedText}
-            </span>
+            {items.map((item, index) => {
+                const isLast = index === items.length - 1;
+                const itemStart = runningCharCount;
+                const itemEnd = itemStart + item.name.length;
+                const sepEnd = itemEnd + (isLast ? 0 : separator.length);
+
+                // Update running count for next iteration
+                runningCharCount = sepEnd;
+
+                // Determine what to show
+                const showIcon = charIndex >= itemStart; // Show icon when typing starts for this item
+                const visibleTextLength = Math.max(0, Math.min(item.name.length, charIndex - itemStart));
+                const visibleText = item.name.slice(0, visibleTextLength);
+
+                const visibleSepLength = Math.max(0, Math.min(separator.length, charIndex - itemEnd));
+                const visibleSep = isLast ? "" : separator.slice(0, visibleSepLength);
+
+                if (!showIcon && visibleTextLength === 0 && visibleSepLength === 0) return null;
+
+                return (
+                    <span key={index} className="inline-flex items-center align-middle">
+                        <span className="inline-flex items-center transition-transform duration-300 ease-out hover:scale-110 cursor-pointer origin-center pl-1">
+                            {showIcon && item.icon && (
+                                <img
+                                    src={item.icon}
+                                    alt=""
+                                    className="w-5 h-5 mr-1.5 inline-block opacity-100 transition-opacity duration-300"
+                                    style={{
+                                        animation: 'fadeIn 0.2s ease-out forwards',
+                                        verticalAlign: 'middle' // Ensure alignment with text
+                                    }}
+                                />
+                            )}
+                            <span>{visibleText}</span>
+                        </span>
+                        <span>{visibleSep}</span>
+                    </span>
+                );
+            })}
             <motion.span
                 animate={{ opacity: [1, 1, 0, 0] }}
                 transition={{
@@ -48,7 +92,7 @@ const TerminalTyper = ({ items, delay = 0 }: { items: any[], delay?: number }) =
                     times: [0, 0.5, 0.5, 1],
                     ease: "linear"
                 }}
-                className="inline-block w-2 h-4 bg-[#16a34a] ml-0.5 align-middle"
+                className="inline-block w-2 h-4 bg-[#16a34a] ml-1 align-middle"
             />
         </div>
     );
