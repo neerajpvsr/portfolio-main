@@ -9,7 +9,7 @@ import { ProjectsPage } from './pages/ProjectsPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { ThemeProvider } from './context/ThemeContext';
 import { CommandBar } from './components/CommandBar';
-import { BootSequence } from './components/BootSequence';
+import { SystemIgnition } from './components/SystemIgnition';
 
 function AppContent() {
   const [isBooting, setIsBooting] = useState(true);
@@ -33,7 +33,7 @@ function AppContent() {
       </div>
 
       <AnimatePresence mode="wait">
-        {isBooting && <BootSequence onComplete={handleBootComplete} />}
+        {isBooting && <SystemIgnition onComplete={handleBootComplete} />}
       </AnimatePresence>
     </>
   );
