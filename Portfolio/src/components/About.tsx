@@ -155,8 +155,8 @@ export const About = () => {
                         variants={{
                             visible: {
                                 transition: {
-                                    staggerChildren: 0.5,
-                                    delayChildren: 2.0
+                                    staggerChildren: 0.2,
+                                    delayChildren: 0.5
                                 }
                             }
                         }}
@@ -183,6 +183,7 @@ export const About = () => {
                                     <motion.span
                                         initial={{ opacity: 0, scale: 0.5 }}
                                         whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
                                         transition={{ delay: 1.5, type: "spring" }}
                                         className="text-3xl md:text-4xl text-console-accent font-bold pb-1"
                                     >

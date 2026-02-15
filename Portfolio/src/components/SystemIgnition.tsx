@@ -79,7 +79,7 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
 
     const terminal = splashRef.current.querySelector('.splash-terminal');
     const btn = splashRef.current.querySelector('.splash-enter-wrap');
-    const grid = splashRef.current.querySelector('.splash-grid');
+    // const grid = splashRef.current.querySelector('.splash-grid'); // Removed
     const particles = splashRef.current.querySelectorAll('.splash-particle');
 
     // 1. Text glitches out/vanishes instantly
@@ -97,10 +97,9 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
     if (btn) {
       tl.to(btn, { y: 50, opacity: 0, duration: 0.4, ease: 'back.in(2)' }, 0);
     }
-    // 3. Grid warps/scales up violently
-    if (grid) {
-      tl.to(grid, { scale: 5, opacity: 0, duration: 0.8, ease: 'expo.in' }, 0);
-    }
+    // 3. Grid remains STATIC (no animation)
+    // Removed tl.to(grid, ...)
+
     // 4. Particles scatter
     if (particles.length) {
       tl.to(particles, {
@@ -170,9 +169,9 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
       // ── Text recedes ──
       tl.to([nameRef.current, subtitleRef.current, lineLeftRef.current, lineRightRef.current], {
         opacity: 0,
-        duration: 0.5,
+        duration: 1.2,
         ease: 'power2.inOut',
-      }, '+=0.3');
+      }, '+=1.2');
 
       // ── Concentric ripples ──
       tl.add(() => {
@@ -192,15 +191,15 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
             }
           );
         }
-      }, '-=0.2');
+      }, '-=0.5');
 
       // ── Profile image emerges from ripple center ──
       tl.to(profileRef.current, {
         opacity: 1,
         scale: 1,
-        duration: 1.0,
+        duration: 0.4,
         ease: 'power2.out',
-      }, '<+=0.3');
+      }, '<');
 
       // Glow pulses brighter with ripples — two-stage throb
       tl.to(glowRef.current, {
@@ -298,8 +297,17 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
     <div ref={overlayRef} className="ignition-overlay">
 
       {/* Persistent Background (visible after splash fades) */}
-      <div className="ignition-background">
-        <div className="splash-grid" style={{ opacity: 0.4 }} />
+      <div className="ignition-background" style={{ backgroundColor: 'var(--sys-black)' }}>
+        <div
+          className="splash-grid"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+            pointerEvents: 'none'
+          }}
+        />
         <div className="splash-particles">
           {Array.from({ length: 12 }).map((_, i) => (
             <div key={i} className={`splash-particle splash-particle-${(i % 6) + 1}`} />
@@ -310,8 +318,6 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
       {/* Premium splash screen */}
       {!started && (
         <div ref={splashRef} className="ignition-splash" onClick={handleEnter}>
-          {/* Animated grid background */}
-          <div className="splash-grid" />
 
           {/* Floating particles */}
           <div className="splash-particles">
@@ -436,12 +442,32 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
         .ignition-line {
           position: absolute;
           top: 50%;
-          height: 1px;
+          height: 2px;
           width: clamp(80px, 18vw, 280px);
-          background: linear-gradient(90deg, transparent, rgba(50, 100, 180, 0.4), transparent);
+          background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.9), transparent);
+          box-shadow: 0 0 15px rgba(100, 200, 255, 0.6), 0 0 30px rgba(100, 200, 255, 0.3);
           z-index: 4;
           opacity: 0;
           transform: scaleX(0);
+          overflow: hidden;
+        }
+        
+        /* Shimmer effect passing through lines */
+        .ignition-line::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+          transform: translateX(-100%);
+          animation: ignition-line-shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes ignition-line-shimmer {
+          0%, 20% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
         }
         .ignition-line--left {
           right: calc(50% + clamp(100px, 16vw, 260px));
@@ -602,19 +628,7 @@ export const SystemIgnition = ({ onComplete }: SystemIgnitionProps) => {
           z-index: 5;
         }
 
-        .splash-grid {
-          position: absolute;
-          inset: -50%;
-          background-image:
-            linear-gradient(rgba(40, 80, 160, 0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(40, 80, 160, 0.04) 1px, transparent 1px);
-          background-size: 60px 60px;
-          animation: splash-grid-drift 20s linear infinite;
-        }
-        @keyframes splash-grid-drift {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(60px, 60px); }
-        }
+
 
         .splash-particles {
           position: absolute;
