@@ -86,7 +86,7 @@ export const Navbar = () => {
         >
             <div className="container-terminal flex items-center justify-between font-mono text-sm">
                 <div
-                    className="flex items-center gap-2 cursor-pointer text-console-text hover:text-console-accent transition-colors group relative z-50"
+                    className="flex items-center gap-2 cursor-pointer text-console-text hover:text-console-accent transition-colors group relative z-50 animate-pulse"
                     onClick={() => {
                         window.dispatchEvent(new Event('open-command-bar'));
                         setIsMobileMenuOpen(false);
